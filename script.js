@@ -1,3 +1,9 @@
+let rock = document.getElementById("rock");
+let paper = document.getElementById("paper");
+let scissor = document.getElementById("scissors");
+
+
+
 function playRound(playerSelection, computerSelection){
    if(playerSelection === computerSelection){
     return "It's a tie";
@@ -33,17 +39,7 @@ function getComputerChoice (){
    return Hand[result]
 }
 
-function getPlayerSelection(){
-    let = playerSelection = prompt("Rock, Paper or Scissor");
-    return playerSelection.charAt(0).toUpperCase()+ playerSelection.slice(1);
-}
 
-function playGame(){
-    for(let i = 0; i < 5; i++){
-        let computerSelection = getComputerChoice();
-        let playerSelection = getPlayerSelection();
-        console.log (playRound(playerSelection, computerSelection));
-    }
-}
-
-playGame();
+rock.addEventListener("click", ()=> {console.log(playRound("Rock", getComputerChoice()))})
+paper.addEventListener("click", ()=> {console.log(playRound("Paper", getComputerChoice()))})
+scissor.addEventListener("click", ()=> {console.log(playRound("Scissor", getComputerChoice()))})
