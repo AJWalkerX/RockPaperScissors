@@ -1,8 +1,9 @@
 let rock = document.getElementById("rock");
 let paper = document.getElementById("paper");
 let scissor = document.getElementById("scissors");
-
-
+let result = document.getElementById("result")
+let showScore = document.getElementById("score")
+let score = 0
 
 function playRound(playerSelection, computerSelection){
    if(playerSelection === computerSelection){
@@ -10,23 +11,29 @@ function playRound(playerSelection, computerSelection){
    }
    //Lose options
    else if (computerSelection === "Rock" && playerSelection === "Scissor"){
-    return "You Lose! Rock beats Scissor."
+      score--;
+      return "You Lose! Rock beats Scissor."
    }
    else if (computerSelection === "Scissor" && playerSelection === "Paper"){
-    return "You Lose! Scissor beats Paper."
+      score--;
+      return "You Lose! Scissor beats Paper."
    }
    else if (computerSelection === "Paper" && playerSelection === "Rock"){
-    return "You Lose! Paper beats Rock"
+      score--;
+      return "You Lose! Paper beats Rock"
    }
    //win options
    else if (playerSelection === "Rock" && computerSelection === "Scissor"){
-    return "You Win! Rock beats Scissor"
+      score++;
+      return "You Win! Rock beats Scissor"
    }
    else if (playerSelection === "Scissor" && computerSelection === "Paper"){
-    return "You Win! Scissor beats Paper."
+      score++;
+      return "You Win! Scissor beats Paper."
    }
    else if (playerSelection === "Paper" && computerSelection === "Rock"){
-    return "You Win! Paper beats Rock"
+      score++;
+      return "You Win! Paper beats Rock"
    }
    else{
     return "Please enter Rock, Paper or Scissor"
@@ -39,7 +46,30 @@ function getComputerChoice (){
    return Hand[result]
 }
 
+function whoWined(){
+   if (score == 5){
+   showScore.innerHTML = "Game Finished! You Winned!";
+   score = 0; 
+   }
+   else if(score < 0  ) {
+      showScore.innerHTML = "Game Finished! You Lost!";
+      score = 0; 
+   }
+   else{
+      showScore.innerHTML = "Score: " + score;
+   }
+}
 
-rock.addEventListener("click", ()=> {console.log(playRound("Rock", getComputerChoice()))})
-paper.addEventListener("click", ()=> {console.log(playRound("Paper", getComputerChoice()))})
-scissor.addEventListener("click", ()=> {console.log(playRound("Scissor", getComputerChoice()))})
+rock.addEventListener("click", ()=> {
+   result.innerHTML = playRound("Rock", getComputerChoice());
+   whoWined();
+});
+paper.addEventListener("click", ()=> {
+   result.innerHTML = playRound("Paper", getComputerChoice());
+   whoWined();
+})
+scissor.addEventListener("click", ()=> {
+  result.innerHTML =  playRound("Scissor", getComputerChoice());
+  whoWined();
+
+})
